@@ -42,6 +42,7 @@
 #include <netinet/in.h>
 #include <sys/types.h>
 
+#include <ros/ros.h>
 #include "roomba_500_series/OpenInterface_400.h"
 
 // *****************************************************************************
@@ -167,7 +168,7 @@ int irobot::OpenInterface::drive(double linear_speed, double turn_radius)
 	if (abs(turn_radius) < 2.0){
 		radius_mm = (int)(2*copysign(1,turn_radius));
 	}
-	
+	ROS_INFO("linear_speed: %d \t radius: %d",linear_speed_mm_s, radius_mm );
 	return this->driveDirect(linear_speed_mm_s, radius_mm);
 }
 

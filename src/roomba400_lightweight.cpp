@@ -88,7 +88,7 @@ int main(int argc, char** argv)
 	
 	ros::Publisher odom_pub = n.advertise<nav_msgs::Odometry>("/odom", 50);
 	tf::TransformBroadcaster odom_broadcaster;
-	ros::Subscriber cmd_vel_sub  = n.subscribe<geometry_msgs::Twist>("/cmd_vel", 1, cmdVelReceived);
+	ros::Subscriber cmd_vel_sub  = n.subscribe<geometry_msgs::Twist>("/cmd_vel", 10, cmdVelReceived);
 	//ros::Subscriber drive_sub  = n.subscribe<geometry_msgs::Twist>("/drive", 1, driveReceived);
 
 
@@ -107,7 +107,7 @@ int main(int argc, char** argv)
 	//bool inc = true;
 	
 	ros::Rate r(10.0);
-
+	ROS_INFO("SPINNIN.");
 	int count = 0;
 	while(n.ok())
 	{
@@ -130,14 +130,13 @@ int main(int argc, char** argv)
 		//ros::Subscriber cmd_vel_sub  = n.subscribe<geometry_msgs::Twist>("/cmd_vel", 1, cmdVelReceived);
 		//roomba->drive(0.005,0.0);
 
-		//if (count < 1){
-		/*
+		if (count < 1){
+		
 		if( roomba->playSong(1) == -1) 
 			ROS_ERROR("Could not play song.");
 		else 
 			count++;
-		*/
-		//}
+		}
 		
 		/*
 		last_x = roomba->odometry_x_;
