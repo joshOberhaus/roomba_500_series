@@ -59,7 +59,17 @@ std::string prefixTopic(std::string prefix, char * name)
 
 void cmdVelReceived(const geometry_msgs::Twist::ConstPtr& cmd_vel)
 {
-	roomba->drive(cmd_vel->linear.x, cmd_vel->angular.z);
+	double angularz = cmd_vel->angular.z;
+	double turnRadius = 100000;
+	if (abs(angularz) < 0.01)
+	{
+
+	}
+	else
+	{
+		turnRadius = cmd_vel->linear.x/ cmd_vel->angular.z;
+	}
+	roomba->drive(cmd_vel->linear.x, turnRadius);
 }
 
 /*
