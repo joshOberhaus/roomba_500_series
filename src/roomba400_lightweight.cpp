@@ -67,7 +67,7 @@ void cmdVelReceived(const geometry_msgs::Twist::ConstPtr& cmd_vel)
 	}
 	else
 	{
-		turnRadius = cmd_vel->linear.x/ cmd_vel->angular.z;
+		turnRadius = (cmd_vel->linear.x/ cmd_vel->angular.z) * 3.14;
 	}
 	roomba->drive(cmd_vel->linear.x, turnRadius);
 }
